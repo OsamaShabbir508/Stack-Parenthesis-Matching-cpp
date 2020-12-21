@@ -1,0 +1,183 @@
+StackForPrenthesisMatching.cpp : Defines the entry point for the console application.
+//
+
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+using namespace std;
+class Node
+{
+public:
+	char data;
+	Node * next;
+
+};
+class Stack
+{
+	Node *top = NULL;
+	char *ss;
+public:
+	Stack(string *s)
+	{
+		if (s == NULL)
+		{
+			cout << " No Equation is Input";
+
+		}
+		else
+		{
+			cout << "Done" << endl;
+			
+			
+
+		}
+	}
+	Stack(){}
+	bool IsEmpty()
+	{
+		if (top == NULL)
+		{
+			//cout << "Unbalanced Equation";
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	bool IsFull()
+	{
+		Node *p = new Node;
+		if (p == NULL)
+		{
+			cout << " Stack OverFLow";
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	void Push(char x)
+	{
+		if (IsFull() == 1);
+		else
+		{
+			Node *p = new Node;
+			p->data = x;
+			p->next = top;
+			top = p;
+			p = NULL;
+
+		}
+	}
+	char Pop()
+	{
+		if (IsEmpty() == 1);
+		else
+		{
+
+			Node *p;
+			p = top;
+			top = top->next;
+
+			return p->data;
+		}
+	}
+
+	
+	
+	int IsBalance(string s)
+	{
+		int n = s.length();
+		
+		ss = new char[n + 1];
+		int q = 0;
+		for (size_t q = 0; q < (n+1); q++)
+		{
+			ss[q] = s[q];
+			
+		}
+		
+		
+		
+		
+		int i = 0;
+		int x = 0;
+		x = n + 1;
+			
+		while (i<=x)
+		{
+			if (ss[i]=='('||ss[i] == '{'||ss[i] == '[')
+			{
+				
+				Push(ss[i]);
+			}
+			else if (ss[i] == ')' || ss[i] == '}' || ss[i] == ']')
+			{
+				if (top == NULL)
+				{
+					
+					return 0;
+				}
+				char x = Pop();
+			
+				if (int(ss[i]) - int(x) != 1)
+				{
+					if (int(ss[i]) - int(x) != 2)
+					{
+						return 0;
+					}
+				}
+			}
+			i++;
+		}
+		if (top!=NULL)
+		{
+			cout << " un balancec Equation";
+			return 0;
+		}
+		else if(top==NULL)
+		{
+			
+			return 1;
+		}
+		
+	}
+	
+	
+
+
+};
+
+int main()
+{
+	
+	
+
+
+		Stack st;
+		cout << "Plz give the equation"<<endl;
+		string oss;
+		cin >> oss;
+
+		if (st.IsBalance(oss) == 0)
+		{
+			cout << " UnBalanced Equation"<<endl;
+		}
+		else if (st.IsBalance(oss) == 1)
+		{
+			cout << "Balanced Equation" << endl;
+
+		}
+		cout << " do u want another equation? press 0" << endl;
+		
+
+	
+
+	int x;
+	cin >> x;
+	
+	return 0;
+}
